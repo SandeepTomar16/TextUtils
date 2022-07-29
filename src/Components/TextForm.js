@@ -21,9 +21,7 @@ export default function TextForm(props) {
     };
 
     const handleCopy = () => {
-        let text = document.getElementById("myBox");
-        text.select();
-        navigator.clipboard.writeText(text.value);
+        navigator.clipboard.writeText(text);
         props.showAlert(":  Text copied to clipboard", "success");
     };
 
@@ -52,7 +50,7 @@ export default function TextForm(props) {
             <button type="button" className="btn btn-success  my-3 mx-3" onClick={handleClearClick} >Clear Text</button>
 
         <h2 className='preview my-3 d-flex'>Preview your text</h2>
-        <p className='d-flex' >{text.split(" ").filter((element)=>{ return element.length!==0}).length} words and {text.length} characters</p>
+        <p className='d-flex' >{text.split(/\s+/).filter((element)=>{ return element.length!==0}).length} words and {text.length} characters</p>
         <p className='d-flex'>{.008 * text.split(" ").filter((element)=>{ return element.length!==0}).length} Minutes read</p>
         <h4 className='d-flex'>Your Text Preview</h4>
         <p className='d-flex'>{text.length>0 ? text: 'Nothing to preview!'}</p>
